@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 //PrimerNg Modules
 import {ButtonModule} from 'primeng/button';
@@ -19,6 +21,8 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import {TabViewModule} from 'primeng/tabview';
 import {ToolbarModule} from 'primeng/toolbar';
 import { FormsModule } from '@angular/forms';
+import {InputTextModule} from 'primeng/inputtext';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +43,9 @@ import { FormsModule } from '@angular/forms';
     InputSwitchModule,
     FormsModule,
     SliderModule,
-    CardModule
+    CardModule,
+    InputTextModule,
+    HttpClientModule
   
   ],
   providers: [],
