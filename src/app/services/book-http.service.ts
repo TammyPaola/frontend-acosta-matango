@@ -34,7 +34,7 @@ export class BookHttpService {
   }
 
 
-  update(id: number, book: BookModel) {
+  update(id: number | undefined, book: BookModel) {
 
     const url = 'http://backendacosta-matango.test/api/v1/private/books/' + id;
 
@@ -42,9 +42,9 @@ export class BookHttpService {
   }
 
 
-  delete(id: number) {
+  delete(id: number | undefined) {
 
-    const url = 'http://backendacosta-matango.test/api/v1/public/books/21' + id;
+    const url = 'http://backendacosta-matango.test/api/v1/public/books/' + id;
 
     return this.httpClient.delete(url);
   }

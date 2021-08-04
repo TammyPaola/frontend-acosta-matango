@@ -20,7 +20,7 @@ import { UnderMaintenanceComponent } from './under-maintenance/under-maintenance
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import {TabViewModule} from 'primeng/tabview';
 import {ToolbarModule} from 'primeng/toolbar';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
 
 
@@ -45,7 +45,10 @@ import {InputTextModule} from 'primeng/inputtext';
     SliderModule,
     CardModule,
     InputTextModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
+    
   
   ],
   providers: [],

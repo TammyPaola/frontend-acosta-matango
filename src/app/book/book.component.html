@@ -1,7 +1,90 @@
 <h1>Book</h1>
-<h5>{{book | json}}</h5>
+
+<!-- Formulario Reactivo -->
+{{formBook.value | json}}
+<br>
+
+
+<p-card>
+    <ng-template pTemplate="header">
+        Formulario Reactivo xd
+    </ng-template>
+    <div class="p-fluid">
+        <form [formGroup]="formBook" (ngSubmit)="onSubmit">
+            <div class="p-field">
+                <label for="id">ID:</label>
+                <input pInputText type="text" id="id" formControlName="id">
+            </div>
+            <div class="p-field">
+                <label for="code">Code:</label>
+                <input pInputText type="text" id="code" formControlName="code">
+                <div *ngIf="codeField.invalid && (codeField.touched || codeField.dirty)">
+                    <small *ngIf="codeField.errors?.required" class="p-error">
+                        EL campo es requerido
+                    </small>
+                    <small *ngIf="codeField.errors?.maxlength" class="p-error">
+                        Maximo de caracteres es 5
+                    </small>
+                    <small *ngIf="codeField.errors?.minlength" class="p-error">
+                        Minimo de caracteres es 3
+                    </small>
+                </div>
+            </div>
+            <div class="p-field">
+                <label for="date">Dateode:</label>
+                <input pInputText type="text" id="date" formControlName="date">
+            </div>
+            <div class="p-field">
+                <label for="description">description:</label>
+                <input pInputText type="text" id="description" formControlName="description">
+            </div>
+            <div class="p-field">
+                <label for="published">Published:</label>
+                <input pInputText type="text" id="published" formControlName="published">
+            </div>
+            <div class="p-field">
+                <label for="title">Title:</label>
+                <input pInputText type="text" id="title" formControlName="title">
+                
+            </div>
+            <div class="p-field">
+                <button pButton type="submit" label="Guardar" icon="pi pi-save" (click)="onSubmit()"> </button>
+            </div>
+        </form>
+    </div>
+
+
+</p-card>
+
+
+
 
 <br>
 
 <h1>Books</h1>
-<h5>{{books | json}}</h5>
+
+<table>
+    <tr>
+        <th>
+            id
+        </th>
+        <th>
+            title
+        </th>
+    </tr>
+    <tr *ngFor="let book of books ">
+        <td>
+            {{book.id}}
+        </td>
+        <td>
+            {{book.title}}
+        </td>
+        <td>
+            <button pButton type="button" label="Mostrar" (click)="selectBook(book)"></button>
+            <button pButton type="button" label="eliminar" class="p-button-danger" (click)="deleteBook(book)"></button>
+            <button pButton type="button" label="modificar" class="p-button-warning"
+                (click)="updateBook(book)"></button>
+        </td>
+    </tr>
+
+</table>

@@ -1,4 +1,6 @@
+import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookModel } from '../models/models.index';
 import { BookHttpService } from '../services/book-http.service';
 
@@ -11,15 +13,16 @@ import { BookHttpService } from '../services/book-http.service';
 })
 export class BookComponent implements OnInit {
 
-  book: BookModel = {};
+  selectedBook: BookModel = {};
 
   //array de libros
 
   books: BookModel[] = [];
 
+  formBook: FormGroup;
 
-  constructor(private bookHttpService: BookHttpService) {
-
+  constructor(private bookHttpService: BookHttpService, private formBuilder: FormBuilder ) {
+    this.formBook = this.newFormBook();
 
 
   }
@@ -27,6 +30,24 @@ export class BookComponent implements OnInit {
     this.getBooks();
     this.getBook();
   }
+
+  //estructura sencilla de un formulario
+
+  newFormBook(): FormGroup {
+    return this.formBuilder.group(
+      {
+        id: [null],
+        code: [null, [Validators.required, Validators.maxLength(5), Validators.minLength(3)]],
+        date: [null, ],
+        description: [null],
+        published: [null],
+        title: [null, [Validators.required, Validators.minLength(5)] ]
+      }
+    )
+  }
+
+
+
 
   getBooks(): void {
 
@@ -48,7 +69,7 @@ export class BookComponent implements OnInit {
 
       response => {
 
-        this.book = response['data'];
+        this.selectedBook = response['data'];
       },
 
       error => {
@@ -59,7 +80,7 @@ export class BookComponent implements OnInit {
   
   createBook(): void {
 
-    this.bookHttpService.create(this.book).subscribe(
+    this.bookHttpService.create(this.selectedBook).subscribe(
 
       response => {
         console.log(response)
@@ -71,23 +92,9 @@ export class BookComponent implements OnInit {
     );
   }
 
-  updateBook(): void {
+  updateBook(book: BookModel): void {
 
-    this.bookHttpService.update(this.book.id, this.book).subscribe(
-
-      response => {
-        console.log(response)
-      },
-
-      error => {
-        console.log(error)
-      }
-    );
-  }
-
-  deleteBook(): void {
-
-    this.bookHttpService.delete(this.book.id).subscribe(
+    this.bookHttpService.update(book.id, book).subscribe(
 
       response => {
         console.log(response)
@@ -99,5 +106,40 @@ export class BookComponent implements OnInit {
     );
   }
 
+  deleteBook(book: BookModel): void {
+
+    this.bookHttpService.delete(book.id).subscribe(
+
+      response => {
+        console.log(response)
+        this.removeBook(book);
+      },
+
+      error => {
+        console.log(error)
+      }
+    );
+  }
+
+  removeBook(book: BookModel){
+    this.books = this.books.filter(element => element.id !== book.id);
+  }
+
+
+  selectBook(book: BookModel) {
+    console.log(book)
+    this.formBook.patchValue(book)
+  }
+
+  onSubmit(){
+    console.log('subido!')
+  }
+
+  get idField(){
+    return this.formBook.controls['id']
+  }
+  get codeField(){
+    return this.formBook.controls['code']
+  }
 
 }
