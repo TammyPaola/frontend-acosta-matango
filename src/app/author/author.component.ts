@@ -1,3 +1,5 @@
+import { AuthorHttpService } from '../services/author-http.service';
+import { AuthorModel } from '../models/models.index';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,24 +8,77 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent implements OnInit {
-  val1: number;
+  
+  author: AuthorModel = {};
 
-  val2: number = 50;
+  //array de autores
 
-  val3: number;
+  authors: AuthorModel[] = [];
 
-  val4: number;
+  constructor(private authorHttpService: AuthorHttpService) { 
+    
+  }
 
-  rangeValues: number[] = [20,80];
+  ngOnInit() {
+    this.getAuthors();
+    this.getAuthor();
 
-  display: boolean = false;
+  }
 
-    showDialog() {
-        this.display = true;
-    }
-  constructor() { }
+  getAuthors(): void {
+    this.authorHttpService.getAll().subscribe(
+      response => {
+        this.authors = response['data'] as AuthorModel[];
+      },
+      error => {
+        console.log(error)
+      }
+    );
+  }
 
-  ngOnInit(): void {
+  getAuthor(): void {
+    const id = 1;
+    this.authorHttpService.geteOne(id).subscribe(
+      response => {
+        this.author = response['data'];
+      },
+      error => {
+        console.log(error)
+      }
+    );
+  }
+
+  createAuthor(): void{
+    this.authorHttpService.create(this.author).subscribe(
+      response => {
+        console.log(response)
+      },
+      error => {
+        console.log(error)
+      }
+    );
+  }
+
+  updateAuthor(): void {
+    this.authorHttpService.update(this.author.id, this.author).subscribe(
+      response => {
+        console.log(response)
+      },
+      error => {
+        console.log(error)
+      }
+    );
+  }
+
+  deleteAuthor(): void {
+    this.authorHttpService.delete(this.author.id).subscribe(
+      response => {
+        console.log(response)
+      },
+      error => {
+        console.log(error)
+      }
+    );
   }
 
 }
