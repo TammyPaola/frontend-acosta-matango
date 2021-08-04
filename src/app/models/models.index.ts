@@ -1,3 +1,3 @@
-export {bookmodel} from './book.model'
-export {authormodel} from './author.model'
+export {BookModel} from './book.model'
+export {AuthorModel} from './author.model'
 

@@ -1,8 +1,8 @@
-export interface bookmodel{
+export interface BookModel{
     id?:number;
     code?: string;
     date?:Date;
     description?: string;
-    approved?:boolean;
+    published?:boolean;
     title?: string;
 }

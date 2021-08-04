@@ -1,14 +1,13 @@
-import {bookmodel} from './book.model';
-export interface authormodel{
+import {BookModel} from './book.model';
+export interface AuthorModel{
 
 
     id?:number;
-    book:bookmodel;
-    age ?:number;
-    name?:string;
+    book:BookModel;
     email?: string;
-    date?:Date;
-    desidentificador?: string;
-    number?:number;
+    age ?:number;
+    identification?: string;
+    names?:string;
+    phone?:string;
 
 }
