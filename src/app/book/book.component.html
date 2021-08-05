@@ -11,11 +11,11 @@
     </ng-template>
     <div class="p-fluid">
         <form [formGroup]="formBook" (ngSubmit)="onSubmit">
-            <div class="p-field">
+            <div class="field">
                 <label for="id">ID:</label>
                 <input pInputText type="text" id="id" formControlName="id">
             </div>
-            <div class="p-field">
+            <div class="field">
                 <label for="code">Code:</label>
                 <input pInputText type="text" id="code" formControlName="code">
                 <div *ngIf="codeField.invalid && (codeField.touched || codeField.dirty)">
@@ -30,24 +30,24 @@
                     </small>
                 </div>
             </div>
-            <div class="p-field">
+            <div class="field">
                 <label for="date">Dateode:</label>
                 <input pInputText type="text" id="date" formControlName="date">
             </div>
-            <div class="p-field">
+            <div class="field">
                 <label for="description">description:</label>
                 <input pInputText type="text" id="description" formControlName="description">
             </div>
-            <div class="p-field">
+            <div class="field">
                 <label for="published">Published:</label>
                 <input pInputText type="text" id="published" formControlName="published">
             </div>
-            <div class="p-field">
+            <div class="field">
                 <label for="title">Title:</label>
                 <input pInputText type="text" id="title" formControlName="title">
                 
             </div>
-            <div class="p-field">
+            <div class="field">
                 <button pButton type="submit" label="Guardar" icon="pi pi-save" (click)="onSubmit()"> </button>
             </div>
         </form>

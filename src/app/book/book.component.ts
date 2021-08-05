@@ -1,9 +1,9 @@
 import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BookModel } from '../models/models.index';
+import { BookModel } from '../models/index';
 import { BookHttpService } from '../services/book-http.service';
-
+import {MessageService} from '../services/message.service';
 
 @Component({
   selector: 'app-book',
@@ -21,7 +21,10 @@ export class BookComponent implements OnInit {
 
   formBook: FormGroup;
 
-  constructor(private bookHttpService: BookHttpService, private formBuilder: FormBuilder ) {
+  constructor(
+    private bookHttpService: BookHttpService, 
+    private formBuilder: FormBuilder, 
+    public messageService: MessageService ) {
     this.formBook = this.newFormBook();
 
 
@@ -55,11 +58,11 @@ export class BookComponent implements OnInit {
 
       response => {
 
-        this.books = response['data'] as BookModel[];
+        this.books = response.data;
       },
 
       error => {
-        console.log(error)
+        this.messageService.error(error);
       }
     );
   }
@@ -69,25 +72,26 @@ export class BookComponent implements OnInit {
 
       response => {
 
-        this.selectedBook = response['data'];
+        this.selectedBook = response.data
       },
 
       error => {
-        console.log(error)
+        this.messageService.error(error);
       }
     );
   }
   
-  createBook(): void {
+  storeBook(book: BookModel): void {
 
-    this.bookHttpService.create(this.selectedBook).subscribe(
+    this.bookHttpService.store(this.selectedBook).subscribe(
 
       response => {
-        console.log(response)
+        this.saveBook(book)
+        this.messageService.success(response)
       },
 
       error => {
-        console.log(error)
+        this.messageService.error(error);
       }
     );
   }
@@ -97,11 +101,12 @@ export class BookComponent implements OnInit {
     this.bookHttpService.update(book.id, book).subscribe(
 
       response => {
-        console.log(response)
+        this.saveBook(book)
+       this.messageService.success(response)
       },
 
       error => {
-        console.log(error)
+        this.messageService.error(error);
       }
     );
   }
@@ -111,12 +116,12 @@ export class BookComponent implements OnInit {
     this.bookHttpService.delete(book.id).subscribe(
 
       response => {
-        console.log(response)
         this.removeBook(book);
+        this.messageService.success(response)
       },
 
       error => {
-        console.log(error)
+        this.messageService.error(error);
       }
     );
   }
@@ -131,8 +136,21 @@ export class BookComponent implements OnInit {
     this.formBook.patchValue(book)
   }
 
-  onSubmit(){
-    console.log('subido!')
+  saveBook(book: BookModel) {
+    const index = this.books.findIndex(element => element.id === book.id);
+    if (index === -1) {
+      this.books.push(book);
+    } else {
+      this.books[index] = book;
+    }
+  }
+
+  onSubmit(book: BookModel) {
+    if (book.id) {
+      this.updateBook(book);
+    } else {
+      this.storeBook(book);
+    }
   }
 
   get idField(){

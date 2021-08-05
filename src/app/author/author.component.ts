@@ -1,6 +1,9 @@
 import { AuthorHttpService } from '../services/author-http.service';
-import { AuthorModel } from '../models/models.index';
+import { AuthorModel } from '../models/index';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {MessageService} from '../services/message.service';
+
 
 @Component({
   selector: 'app-author',
@@ -15,7 +18,7 @@ export class AuthorComponent implements OnInit {
 
   authors: AuthorModel[] = [];
 
-  constructor(private authorHttpService: AuthorHttpService) { 
+  constructor(private authorHttpService: AuthorHttpService,  private formBuilder: FormBuilder,  public messageService: MessageService ) { 
     
   }
 
@@ -28,7 +31,7 @@ export class AuthorComponent implements OnInit {
   getAuthors(): void {
     this.authorHttpService.getAll().subscribe(
       response => {
-        this.authors = response['data'] as AuthorModel[];
+        this.authors = response.data
       },
       error => {
         console.log(error)
@@ -40,7 +43,7 @@ export class AuthorComponent implements OnInit {
     const id = 1;
     this.authorHttpService.geteOne(id).subscribe(
       response => {
-        this.author = response['data'];
+        this.author = response.data
       },
       error => {
         console.log(error)
