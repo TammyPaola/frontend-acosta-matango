@@ -1,0 +1,167 @@
+[
+  {
+    "name": "arya-blue",
+    "path": "assets/themes/arya-blue/theme.css",
+    "color": "#64B5F6"
+  },
+  {
+    "name": "arya-green",
+    "path": "assets/themes/arya-green/theme.css",
+    "color": "#81C784"
+  },
+  {
+    "name": "arya-orange",
+    "path": "assets/themes/arya-orange/theme.css",
+    "color": "#FFD54F"
+  },
+  {
+    "name": "arya-purple",
+    "path": "assets/themes/arya-purple/theme.css",
+    "color": "#2a323d"
+  },
+  {
+    "name": "bootstrap4-dark-blue",
+    "path": "assets/themes/bootstrap4-dark-blue/theme.css",
+    "color": "#8dd0ff"
+  },
+  {
+    "name": "bootstrap4-dark-purple",
+    "path": "assets/themes/bootstrap4-dark-purple/theme.css",
+    "color": "#c298d8"
+  },
+  {
+    "name": "bootstrap4-dark-blue",
+    "path": "assets/themes/bootstrap4-light-blue/theme.css",
+    "color": "#007bff"
+  },
+  {
+    "name": "bootstrap4-dark-blue",
+    "path": "assets/themes/bootstrap4-light-purple/theme.css",
+    "color": "#883cae"
+  },
+  {
+    "name": "fluent-light",
+    "path": "assets/themes/fluent-light/theme.css",
+    "color": "#0078d4"
+  },
+  {
+    "name": "luna-amber",
+    "path": "assets/themes/luna-amber/theme.css",
+    "color": "#FFE082"
+  },
+  {
+    "name": "luna-blue",
+    "path": "assets/themes/luna-blue/theme.css",
+    "color": "#81D4FA"
+  },
+  {
+    "name": "luna-green",
+    "path": "assets/themes/luna-green/theme.css",
+    "color": "#C5E1A5"
+  },
+  {
+    "name": "luna-pink",
+    "path": "assets/themes/luna-pink/theme.css",
+    "color": "#F48FB1"
+  },
+  {
+    "name": "md-dark-deeppurple",
+    "path": "assets/themes/md-dark-deeppurple/theme.css",
+    "color": "#CE93D8"
+  },
+  {
+    "name": "md-dark-indigo",
+    "path": "assets/themes/md-dark-indigo/theme.css",
+    "color": "#9FA8DA"
+  },
+  {
+    "name": "md-light-deeppurple",
+    "path": "assets/themes/md-light-deeppurple/theme.css",
+    "color": "#673AB7"
+  },
+  {
+    "name": "md-light-indigo",
+    "path": "assets/themes/md-light-indigo/theme.css",
+    "color": "#3F51B5"
+  },
+  {
+    "name": "mdc-dark-deeppurple",
+    "path": "assets/themes/mdc-dark-deeppurple/theme.css",
+    "color": "#673AB7"
+  },
+  {
+    "name": "mdc-dark-indigo",
+    "path": "assets/themes/mdc-dark-indigo/theme.css",
+    "color": "#3F51B5"
+  },
+  {
+    "name": "mdc-light-deeppurple",
+    "path": "assets/themes/mdc-light-deeppurple/theme.css",
+    "color": "#673AB7"
+  },
+  {
+    "name": "mdc-light-indigo",
+    "path": "assets/themes/mdc-light-indigo/theme.css",
+    "color": "#3F51B5"
+  },
+  {
+    "name": "nova",
+    "path": "assets/themes/nova/theme.css",
+    "color": "#007ad9"
+  },
+  {
+    "name": "nova-accent",
+    "path": "assets/themes/nova-accent/theme.css",
+    "color": "#007ad9"
+  },
+  {
+    "name": "nova-alt",
+    "path": "assets/themes/nova-alt/theme.css",
+    "color": "#007ad9"
+  },
+  {
+    "name": "rhea",
+    "path": "assets/themes/rhea/theme.css",
+    "color": "#7B95A3"
+  },
+  {
+    "name": "saga-blue",
+    "path": "assets/themes/saga-blue/theme.css",
+    "color": "#2196F3"
+  },
+  {
+    "name": "saga-green",
+    "path": "assets/themes/saga-green/theme.css",
+    "color": "#4CAF50"
+  },
+  {
+    "name": "saga-orange",
+    "path": "assets/themes/saga-orange/theme.css",
+    "color": "#FFC107"
+  },
+  {
+    "name": "saga-purple",
+    "path": "assets/themes/saga-purple/theme.css",
+    "color": "#9C27B0"
+  },
+  {
+    "name": "vela-blue",
+    "path": "assets/themes/vela-blue/theme.css",
+    "color": "#64B5F6"
+  },
+  {
+    "name": "vela-green",
+    "path": "assets/themes/vela-green/theme.css",
+    "color": "#81C784"
+  },
+  {
+    "name": "vela-orange",
+    "path": "assets/themes/vela-orange/theme.css",
+    "color": "#FFD54F"
+  },
+  {
+    "name": "vela-purple",
+    "path": "assets/themes/vela-purple/theme.css",
+    "color": "#BA68C8"
+  }
+]

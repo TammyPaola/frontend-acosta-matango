@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookModel } from '../models/index';
 import { BookHttpService } from '../services/book-http.service';
-import {MessageService} from '../services/message.service';
+import { MessageService } from '../services/message.service';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-book',
@@ -20,11 +21,15 @@ export class BookComponent implements OnInit {
   books: BookModel[] = [];
 
   formBook: FormGroup;
+  themes: any;
 
   constructor(
-    private bookHttpService: BookHttpService, 
-    private formBuilder: FormBuilder, 
-    public messageService: MessageService ) {
+    private bookHttpService: BookHttpService,
+    private formBuilder: FormBuilder,
+    public messageService: MessageService,
+    private appService: AppService
+    ) {
+
     this.formBook = this.newFormBook();
 
 
@@ -41,10 +46,10 @@ export class BookComponent implements OnInit {
       {
         id: [null],
         code: [null, [Validators.required, Validators.maxLength(5), Validators.minLength(3)]],
-        date: [null, ],
-        description: [null],
+        date: [null,  [Validators.required]],
+        description: [null, [Validators.required]],
         published: [null],
-        title: [null, [Validators.required, Validators.minLength(5)] ]
+        title: [null, [Validators.required]]
       }
     )
   }
@@ -59,6 +64,7 @@ export class BookComponent implements OnInit {
       response => {
 
         this.books = response.data;
+        this.messageService.success(response);
       },
 
       error => {
@@ -73,6 +79,7 @@ export class BookComponent implements OnInit {
       response => {
 
         this.selectedBook = response.data
+        this.messageService.success(response);
       },
 
       error => {
@@ -80,13 +87,13 @@ export class BookComponent implements OnInit {
       }
     );
   }
-  
+
   storeBook(book: BookModel): void {
 
-    this.bookHttpService.store(this.selectedBook).subscribe(
+    this.bookHttpService.store(book).subscribe(
 
       response => {
-        this.saveBook(book)
+        this.saveBook(response.data)
         this.messageService.success(response)
       },
 
@@ -102,7 +109,7 @@ export class BookComponent implements OnInit {
 
       response => {
         this.saveBook(book)
-       this.messageService.success(response)
+        this.messageService.success(response)
       },
 
       error => {
@@ -126,7 +133,7 @@ export class BookComponent implements OnInit {
     );
   }
 
-  removeBook(book: BookModel){
+  removeBook(book: BookModel) {
     this.books = this.books.filter(element => element.id !== book.id);
   }
 
@@ -146,18 +153,36 @@ export class BookComponent implements OnInit {
   }
 
   onSubmit(book: BookModel) {
-    if (book.id) {
-      this.updateBook(book);
+    if (this.formBook.valid) {
+      if (book.id) {
+        this.updateBook(book);
+        
+      } else {
+        this.storeBook(book);
+      }
+      this.formBook.reset();
     } else {
-      this.storeBook(book);
+      this.formBook.markAllAsTouched();
     }
   }
 
-  get idField(){
+  get idField() {
     return this.formBook.controls['id']
   }
-  get codeField(){
+  get codeField() {
     return this.formBook.controls['code']
+  }
+  get dateField() {
+    return this.formBook.controls['date']
+  }
+  get descriptionField() {
+    return this.formBook.controls['description']
+  }
+  get publishedFeld() {
+    return this.formBook.controls['published']
+  }
+  get titleField() {
+    return this.formBook.controls['title']
   }
 
 }

@@ -10,6 +10,10 @@ import {ButtonModule} from 'primeng/button';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {SliderModule} from 'primeng/slider';
 import {CardModule} from 'primeng/card';
+import {CalendarModule} from 'primeng/calendar';
+import {TableModule} from 'primeng/table';
+
+
 
 //Componenets
 import { AuthorComponent } from './author/author.component';
@@ -48,7 +52,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CalendarModule,
+    TableModule
     
     
   
